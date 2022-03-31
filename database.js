@@ -1,10 +1,20 @@
+// var mysql = require('mysql');
+// var connection = mysql.createConnection({
+
+//     host:'localhost',
+//     user:'root',
+//     password:'123456',
+//     database:'sqlquanlyhocphan'  
+// });
+
+// module.exports=connection;
+
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-
-    host:'localhost',
-    user:'root',
-    password:'123456',
-    database:'sqlquanlyhocphan'  
+var pool  = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'dkhpiuh.herokuapp.com',
+  user            : 'root',
+  password        : '123456',
+  database        : 'sqlquanlyhocphan'
 });
-
-module.exports=connection;
+module.exports=pool;
