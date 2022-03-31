@@ -1,0 +1,87 @@
+var express = require('express');
+var router = express.Router();
+
+const SinhVien = require('../controller/getSinhVien');
+const Diem = require('../controller/getDiem');
+const LichHoc= require('../controller/getLichHoc');
+const CTKhung = require('../controller/getCTKhung');
+const CongNo = require('../controller/getCongNo');
+
+router.get('/sinhvien',function(req,res,next){
+    SinhVien.getAllSinhVien(function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/sinhvien/:id?',function(req,res,next){
+    SinhVien.getSinhVienById(req.params.id,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/laydiem',function(req,res,next){
+    Diem.getAllDiem(function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/laydiem/:id?',function(req,res,next){
+    Diem.getDiemById(req.params.id,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/laylichhoc/:hocky?/:namhoc?/:mssv?',function(req,res,next){
+    LichHoc.getLichHoc(req.params.hocky, req.params.namhoc, req.params.mssv,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/layctkhung/:mssv?',function(req,res,next){
+    CTKhung.getCTKhung(req.params.mssv,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/laycongno/:mssv?',function(req,res,next){
+    CongNo.getCongNo(req.params.mssv,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
+module.exports=router;
