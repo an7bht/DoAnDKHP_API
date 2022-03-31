@@ -12,7 +12,7 @@
 var mysql = require('mysql');
 var pool  = mysql.createPool({
   connectionLimit : 10,
-  host            : 'localhost',
+  host            : 'dkhpiuh.herokuapp.com',
   user            : 'root',
   password        : '123456',
   database        : 'sqlquanlyhocphan'
