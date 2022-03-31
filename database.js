@@ -17,4 +17,7 @@ var pool  = mysql.createPool({
   password        : '123456',
   database        : 'sqlquanlyhocphan'
 });
-module.exports=pool;
+pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+  });
