@@ -9,8 +9,8 @@ var connection = require('./database');
 var routes = require('./router/testrouter');
 
 app.use('/test',routes);
-var PORT = process.env.PORT || 3000;
-var server = app.listen(PORT, function() {
+//var PORT = process.env.PORT || 3000;
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Server listening on port ' + server.address().port);
 });
 module.exports = app;
