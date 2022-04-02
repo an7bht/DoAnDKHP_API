@@ -6,6 +6,19 @@ const Diem = require('../controller/getDiem');
 const LichHoc= require('../controller/getLichHoc');
 const CTKhung = require('../controller/getCTKhung');
 const CongNo = require('../controller/getCongNo');
+const TaiKhoanSV = require('../controller/getTaiKhoanSV');
+
+router.get('/taikhoansv',function(req,res,next){
+    TaiKhoanSV.getAllTaiKhoan(function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+
 
 router.get('/sinhvien',function(req,res,next){
     SinhVien.getAllSinhVien(function(err,rows){
