@@ -11,4 +11,4 @@ var SinhVien={
 		return database.query("delete from sinhvien where MSSV=?",[id],callback);
 	}
 };
- module.exports=SinhVien;
+module.exports=SinhVien;

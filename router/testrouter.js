@@ -19,7 +19,16 @@ router.get('/taikhoansv',function(req,res,next){
     });
 });
 
-
+router.get('/taikhoansv/:id?',function(req,res,next){
+    TaiKhoanSV.getTaiKHoanByMTK(req.params.id,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 router.get('/sinhvien',function(req,res,next){
     SinhVien.getAllSinhVien(function(err,rows){
         if(err){
