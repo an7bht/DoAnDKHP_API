@@ -73,8 +73,8 @@ router.get('/laydiem/:mssv?',function(req,res,next){
     });
 });
 
-router.get('/laylichhoc/:hocky?/:namhoc?/:mssv?',function(req,res,next){
-    LichHoc.getLichHoc(req.params.hocky, req.params.namhoc, req.params.mssv,function(err,rows){
+router.get('/laylichhoc/:hocky?/:nam?/:mssv?',function(req,res,next){
+    LichHoc.getLichHoc( req.params.hocky,req.params.nam,req.params.mssv,function(err,rows){
         if(err){
             res.json(err);
         }
