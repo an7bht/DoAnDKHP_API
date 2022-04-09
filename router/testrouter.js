@@ -62,8 +62,8 @@ router.get('/laydiem',function(req,res,next){
     });
 });
 
-router.get('/laydiem/:MSSV?',function(req,res,next){
-    Diem.getDiemById(req.params.MSSV,function(err,rows){
+router.get('/laydiem/:mssv?',function(req,res,next){
+    Diem.getDiemById(req.params.mssv,function(err,rows){
         if(err){
             res.json(err);
         }
