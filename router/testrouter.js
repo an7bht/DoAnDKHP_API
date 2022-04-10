@@ -7,6 +7,9 @@ const LichHoc= require('../controller/getLichHoc');
 const CTKhung = require('../controller/getCTKhung');
 const CongNo = require('../controller/getCongNo');
 const TaiKhoanSV = require('../controller/getTaiKhoanSV');
+const DSLopHocPhan = require('../controller/getDSLopHocPhan');
+const DSMonHocPhan = require('../controller/getDSMonHocPhan');
+const DSLopHocPhanLTvsTH = require('../controller/getDSLopHocPhanLTvsTH');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -105,5 +108,37 @@ router.get('/laycongno/:mssv?',function(req,res,next){
         }
     });
 });
-
+// Lấy ds môn học phần cho sinh viên theo hocky, năm:
+router.get('/laydsmhp/:mssv?/:hocky?/:nam?',function(req,res,next){
+    DSMonHocPhan.getDSMonHocPhan( req.params.mssv,req.params.hocky,req.params.nam,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+// Lấy ds Lớp học phần cho sinh viên theo mã môn học phần:
+router.get('/laydslhp/:mamhp?',function(req,res,next){
+    DSLopHocPhan.getDSLopHocPhan(req.params.mamhp,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+// Lấy ds Lớp học phần lý thuyết vs thực hành cho sinh viên theo mã lớp học phần:
+router.get('/laydslhpltvsth/:malhp?',function(req,res,next){
+    DSLopHocPhanLTvsTH.getDSLopHocPhanLTvsTH(req.params.malhp,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 module.exports=router;
