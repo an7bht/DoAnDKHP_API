@@ -10,6 +10,8 @@ const TaiKhoanSV = require('../controller/getTaiKhoanSV');
 const DSLopHocPhan = require('../controller/getDSLopHocPhan');
 const DSMonHocPhan = require('../controller/getDSMonHocPhan');
 const DSLopHocPhanLTvsTH = require('../controller/getDSLopHocPhanLTvsTH');
+const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
+const DKHP = require('../controller/postDKHP');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -138,6 +140,28 @@ router.get('/laydslhpltvsth/:malhp?',function(req,res,next){
         }
         else{
             res.json(rows);
+        }
+    });
+});
+
+router.post('/loginsv',function(req,res,next){
+    TaiKhoanSV1.postTaKhoanSV( req.query.MSSV, req.query.DiaChi,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json({status: true});
+        }
+    });
+});
+
+router.post('/dkhp',function(req,res,next){
+    DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json({status: true});
         }
     });
 });
