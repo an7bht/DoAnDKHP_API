@@ -14,6 +14,7 @@ const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
 const DKHP = require('../controller/postDKHP');
 const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP');
 const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
+const DeleteLopHocPhanDDk = require('../controller/postDeleteLHPDDk');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -167,7 +168,7 @@ router.get('/laydslhpddk/:mssv?/:hocky?/:nam?',function(req,res,next){
         }
     });
 });
-
+//------------Dkhp cho sinh viên------------------------------------------------------------
 router.post('/dkhp',function(req,res,next){
     DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
         if(err){
@@ -178,8 +179,20 @@ router.post('/dkhp',function(req,res,next){
         }
     });
 });
+//------------------Update số lượng đã đăngký của lớp học phần------------------------------
 router.post('/updatesoluongsvdk',function(req,res,next){
     UpdateSLSVDKHP.postUpdateSoLuongDkhp( req.query.DaDangKy, req.query.MaLopHP,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json({status: true});
+        }
+    });
+});
+//---------Hủy lớp hoc phần đã đăng ký----------------------------
+router.post('/deletelhpddk',function(req,res,next){
+    DeleteLopHocPhanDDk.deleteLHPDDK( req.query.MSSV, req.query.MaLopHP,function(err,rows){
         if(err){
             res.json(err);
         }
