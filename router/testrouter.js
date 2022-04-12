@@ -191,7 +191,7 @@ router.post('/updatesoluongsvdk',function(req,res,next){
     });
 });
 //---------Hủy lớp hoc phần đã đăng ký----------------------------
-router.delete('/deletelhpddk',function(req,res,next){
+router.post('/deletelhpddk',function(req,res,next){
     DeleteLopHocPhanDDk.deleteLHPDDK( req.query.MSSV, req.query.MaLopHP,function(err,rows){
         if(err){
             res.json(err);
