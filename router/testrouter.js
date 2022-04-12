@@ -12,7 +12,8 @@ const DSMonHocPhan = require('../controller/getDSMonHocPhan');
 const DSLopHocPhanLTvsTH = require('../controller/getDSLopHocPhanLTvsTH');
 const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
 const DKHP = require('../controller/postDKHP');
-const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP')
+const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP');
+const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -155,6 +156,17 @@ router.get('/laydslhpltvsth/:malhp?',function(req,res,next){
 //         }
 //     });
 // });
+//---------DS lớp học phần đã đăng ký--------------------------------------------//
+router.get('/laydslhpddk/:mssv?/:hocky?/:nam?',function(req,res,next){
+    DSLopHocPhanDDK.getDSLopHocPhanDDK( req.params.mssv,req.params.hocky,req.params.nam,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 
 router.post('/dkhp',function(req,res,next){
     DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
