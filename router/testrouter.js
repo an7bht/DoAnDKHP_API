@@ -12,6 +12,7 @@ const DSMonHocPhan = require('../controller/getDSMonHocPhan');
 const DSLopHocPhanLTvsTH = require('../controller/getDSLopHocPhanLTvsTH');
 const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
 const DKHP = require('../controller/postDKHP');
+const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP')
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -144,8 +145,19 @@ router.get('/laydslhpltvsth/:malhp?',function(req,res,next){
     });
 });
 
-router.post('/loginsv',function(req,res,next){
-    TaiKhoanSV1.postTaKhoanSV( req.query.MSSV, req.query.DiaChi,function(err,rows){
+// router.post('/loginsv',function(req,res,next){
+//     TaiKhoanSV1.postTaKhoanSV( req.query.MSSV, req.query.DiaChi,function(err,rows){
+//         if(err){
+//             res.json(err);
+//         }
+//         else{
+//             res.json({status: true});
+//         }
+//     });
+// });
+
+router.post('/dkhp',function(req,res,next){
+    DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
         if(err){
             res.json(err);
         }
@@ -154,9 +166,8 @@ router.post('/loginsv',function(req,res,next){
         }
     });
 });
-
-router.post('/dkhp',function(req,res,next){
-    DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
+router.post('/updatesoluongsvdk',function(req,res,next){
+    UpdateSLSVDKHP.postUpdateSoLuongDkhp( req.query.DaDangKy, req.query.MaLopHP,function(err,rows){
         if(err){
             res.json(err);
         }
