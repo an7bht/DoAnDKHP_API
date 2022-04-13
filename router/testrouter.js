@@ -17,6 +17,7 @@ const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
 const DeleteLopHocPhanDDk = require('../controller/deleteLHPDDK');
 const MonTienQuyet = require('../controller/getMonTienQuyet');
 const KiemTraMonTienQuyet = require('../controller/getKiemTraMonTienQuyet');
+const KiemTraTrungLichHoc = require('../controller/getKiemTraTrungLichHoc');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -217,6 +218,24 @@ router.get('/laymontienquyet/:malhp?',function(req,res,next){
 //----------Kiểm tra môn tiên quyết---------------------------------------//
 router.get('/kiemtramontienquyet/:mssv?/:malhp?',function(req,res,next){
     KiemTraMonTienQuyet.getKiemTraMonTienQuyet(req.params.mssv,req.params.malhp,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+//---------------Kiểm tra trùng lịch học---------------------------------//
+router.get('/kiemtratrunglichhoc/:mssv?/:hocky?/:nam?/:malhp?/:nhom?/:malhp?/:nhom?',function(req,res,next){
+    KiemTraTrungLichHoc.getKiemTraTrungLichHoc(
+        req.params.mssv,
+        req.params.hocky,
+        req.params.nam,
+        req.params.malhp,
+        req.params.nhom,
+        req.params.malhp,
+        req.params.nhom,function(err,rows){
         if(err){
             res.json(err);
         }
