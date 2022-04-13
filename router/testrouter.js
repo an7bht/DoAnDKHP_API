@@ -15,6 +15,8 @@ const DKHP = require('../controller/postDKHP');
 const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP');
 const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
 const DeleteLopHocPhanDDk = require('../controller/deleteLHPDDK');
+const MonTienQuyet = require('../controller/getMonTienQuyet');
+const KiemTraMonTienQuyet = require('../controller/getKiemTraMonTienQuyet');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -198,6 +200,28 @@ router.delete('/deletelhpddk/:mssv?/:malhp?',function(req,res,next){
         }
         else{
             res.json({status: true});
+        }
+    });
+});
+//----------Lấy môn tiên quyết---------------------------------------//
+router.get('/laymontienquyet/:malhp?',function(req,res,next){
+    MonTienQuyet.getMonTienQuyet(req.params.malhp,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+//----------Kiểm tra môn tiên quyết---------------------------------------//
+router.get('/kiemtramontienquyet/:mssv?/:malhp?',function(req,res,next){
+    KiemTraMonTienQuyet.getKiemTraMonTienQuyet(req.params.mssv,req.params.malhp,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
         }
     });
 });
