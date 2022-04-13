@@ -14,7 +14,7 @@ const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
 const DKHP = require('../controller/postDKHP');
 const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP');
 const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
-const DeleteLopHocPhanDDk = require('../controller/postDeleteLHPDDk');
+const DeleteLopHocPhanDDk = require('../controller/deleteLHPDDK');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -191,8 +191,8 @@ router.post('/updatesoluongsvdk',function(req,res,next){
     });
 });
 //---------Hủy lớp hoc phần đã đăng ký----------------------------
-router.post('/deletelhpddk',function(req,res,next){
-    DeleteLopHocPhanDDk.deleteLHPDDK( req.query.MSSV, req.query.MaLopHP,function(err,rows){
+router.delete('/deletelhpddk/:mssv?/:malhp?',function(req,res,next){
+    DeleteLopHocPhanDDk.deleteLHPDDK( req.params.mssv, req.params.malhp,function(err,rows){
         if(err){
             res.json(err);
         }
