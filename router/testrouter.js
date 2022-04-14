@@ -227,13 +227,11 @@ router.get('/kiemtramontienquyet/:mssv?/:malhp?',function(req,res,next){
     });
 });
 //---------------Kiểm tra trùng lịch học---------------------------------//
-router.get('/kiemtratrunglichhoc/:mssv?/:hocky?/:nam?/:malhp?/:nhom?/:malhp?/:nhom?',function(req,res,next){
+router.get('/kiemtratrunglichhoc/:mssv?/:hocky?/:nam?/:malhp?/:nhom?/',function(req,res,next){
     KiemTraTrungLichHoc.getKiemTraTrungLichHoc(
         req.params.mssv,
         req.params.hocky,
         req.params.nam,
-        req.params.malhp,
-        req.params.nhom,
         req.params.malhp,
         req.params.nhom,function(err,rows){
         if(err){
