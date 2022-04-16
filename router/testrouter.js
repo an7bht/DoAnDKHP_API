@@ -12,7 +12,8 @@ const DSMonHocPhan = require('../controller/getDSMonHocPhan');
 const DSLopHocPhanLT = require('../controller/getDSLopHocPhanLT');
 const DSLopHocPhanTH = require('../controller/getDSLopHocPhanTH');
 const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
-const DKHP = require('../controller/postDKHP');
+const DKHPTH = require('../controller/postDKHPTH');
+const DKHPLT = require('../controller/postDKHPLT');
 const UpdateSLSVDKHP = require('../controller/postUpdateSoLuongDKHP');
 const DSLopHocPhanDDK = require('../controller/getDSLopHocPhanDDK');
 const DeleteLopHocPhanDDk = require('../controller/deleteLHPDDK');
@@ -182,9 +183,20 @@ router.get('/laydslhpddk/:mssv?/:hocky?/:nam?',function(req,res,next){
         }
     });
 });
-//------------Dkhp cho sinh viên------------------------------------------------------------
-router.post('/dkhp',function(req,res,next){
-    DKHP.postDKHP( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
+//------------DKHP thực hành cho sinh viên------------------------------------------------------------
+router.post('/dkhpth',function(req,res,next){
+    DKHPTH.postDKHPTH( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json({status: true});
+        }
+    });
+});
+//------------DKHP lý thuyết cho sinh viên------------------------------------------------------------
+router.post('/dkhplt',function(req,res,next){
+    DKHPLT.postDKHPLT( req.query.MSSV, req.query.MaLopHP,req.query.Nhom,function(err,rows){
         if(err){
             res.json(err);
         }
