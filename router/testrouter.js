@@ -7,6 +7,7 @@ const LichHoc= require('../controller/getLichHoc');
 const CTKhung = require('../controller/getCTKhung');
 const CongNo = require('../controller/getCongNo');
 const TaiKhoanSV = require('../controller/getTaiKhoanSV');
+const LopHocPhan = require('../controller/getLopHocPhan');
 const DSLopHocPhan = require('../controller/getDSLopHocPhan');
 const DSMonHocPhan = require('../controller/getDSMonHocPhan');
 const DSLopHocPhanLT = require('../controller/getDSLopHocPhanLT');
@@ -121,6 +122,17 @@ router.get('/laycongno/:mssv?',function(req,res,next){
 // Lấy ds môn học phần cho sinh viên theo hocky, năm:
 router.get('/laydsmhp/:mssv?/:hocky?/:nam?',function(req,res,next){
     DSMonHocPhan.getDSMonHocPhan( req.params.mssv,req.params.hocky,req.params.nam,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+// Lấy một Lớp học phần cho sinh viên theo mã lớp học phần:
+router.get('/laylhp/:malhp?',function(req,res,next){
+    LopHocPhan.getLopHocPhan(req.params.malhp,function(err,rows){
         if(err){
             res.json(err);
         }
