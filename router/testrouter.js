@@ -9,7 +9,7 @@ const CongNo = require('../controller/getCongNo');
 const TaiKhoanSV = require('../controller/getTaiKhoanSV');
 const DSLopHocPhan = require('../controller/getDSLopHocPhan');
 const DSMonHocPhan = require('../controller/getDSMonHocPhan');
-const DSLopHocPhanLTvsTH = require('../controller/getDSLopHocPhanLTvsTH');
+const DSLopHocPhanLT = require('../controller/getDSLopHocPhanLT');
 const DSLopHocPhanTH = require('../controller/getDSLopHocPhanTH');
 const TaiKhoanSV1 = require('../controller/postTaiKhoanSV');
 const DKHP = require('../controller/postDKHP');
@@ -140,8 +140,8 @@ router.get('/laydslhp/:mamhp?',function(req,res,next){
     });
 });
 //----------------------ấy ds Lớp học phần lý thuyết --------------------------------
-router.get('/laydslhpltvsth/:malhp?',function(req,res,next){
-    DSLopHocPhanLTvsTH.getDSLopHocPhanLTvsTH(req.params.malhp,function(err,rows){
+router.get('/laydslhplt/:malhp?',function(req,res,next){
+    DSLopHocPhanLT.getDSLopHocPhanLT(req.params.malhp,function(err,rows){
         if(err){
             res.json(err);
         }
