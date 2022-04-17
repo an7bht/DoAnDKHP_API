@@ -108,7 +108,7 @@ router.get('/layctkhung/:mssv?',function(req,res,next){
         }
     });
 });
-
+//------------lấy công nợ cho sinh viên---------------------------//
 router.get('/laycongno/:mssv?',function(req,res,next){
     CongNo.getCongNo(req.params.mssv,function(err,rows){
         if(err){
