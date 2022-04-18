@@ -97,7 +97,7 @@ router.get('/laylichhoc/:hocky?/:nam?/:mssv?',function(req,res,next){
         }
     });
 });
-
+//------------lấy ct khung cho sinh viên---------------------------//
 router.get('/layctkhung/:mssv?',function(req,res,next){
     CTKhung.getCTKhung(req.params.mssv,function(err,rows){
         if(err){
