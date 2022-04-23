@@ -21,6 +21,7 @@ const DeleteLopHocPhanDDk = require('../controller/deleteLHPDDK');
 const MonTienQuyet = require('../controller/getMonTienQuyet');
 const KiemTraMonTienQuyet = require('../controller/getKiemTraMonTienQuyet');
 const KiemTraTrungLichHoc = require('../controller/getKiemTraTrungLichHoc');
+const NamHoc = require('../controller/getNamHoc');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -64,7 +65,16 @@ router.get('/sinhvien/:id?',function(req,res,next){
         }
     });
 });
-
+router.get('/namhoc',function(req,res,next){
+    NamHoc.getNamHoc(function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 router.get('/laydiem',function(req,res,next){
     Diem.getAllDiem(function(err,rows){
         if(err){
