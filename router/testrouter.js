@@ -22,6 +22,7 @@ const MonTienQuyet = require('../controller/getMonTienQuyet');
 const KiemTraMonTienQuyet = require('../controller/getKiemTraMonTienQuyet');
 const KiemTraTrungLichHoc = require('../controller/getKiemTraTrungLichHoc');
 const NamHoc = require('../controller/getNamHoc');
+const MatKhau = require('../controller/updateMatKhau');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -284,6 +285,16 @@ router.get('/kiemtratrunglichhoc/:mssv?/:hocky?/:nam?/:malhp?/:nhom?/',function(
         }
         else{
             res.json(rows);
+        }
+    });
+});
+router.put('/matkhau',function(req,res){
+    MatKhau.updateMatKhau( req.query.Pass,req.query.MaTaiKhoan,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json({status: true});
         }
     });
 });
