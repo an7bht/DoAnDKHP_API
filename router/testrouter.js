@@ -112,8 +112,10 @@ router.get('/laylichhoc/:hocky?/:nam?/:mssv?',function(req,res,next){
     });
 });
 //------------lấy ct khung cho sinh viên---------------------------//
-router.get('/layctkhung/:mssv?',function(req,res,next){
-    CTKhung.getCTKhung(req.params.mssv,function(err,rows){
+router.get('/layctkhung/:mssv?/:hocky?',function(req,res,next){
+    CTKhung.getCTKhung(
+        req.params.mssv,
+        req.params.hocky,function(err,rows){
         if(err){
             res.json(err);
         }
@@ -124,7 +126,8 @@ router.get('/layctkhung/:mssv?',function(req,res,next){
 });
 //------------lấy công nợ cho sinh viên---------------------------//
 router.get('/laycongno/:mssv?/:nam?/:hocky?',function(req,res,next){
-    CongNo.getCongNo(req.params.mssv,
+    CongNo.getCongNo(
+        req.params.mssv,
         req.params.nam,
         req.params.hocky,function(err,rows){
         if(err){
