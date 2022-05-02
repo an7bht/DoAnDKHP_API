@@ -288,6 +288,8 @@ router.get('/kiemtratrunglichhoc/:mssv?/:hocky?/:nam?/:malhp?/:nhom?/',function(
         }
     });
 });
+//
+
 router.put('/matkhau',function(req,res){
     MatKhau.updateMatKhau( req.query.Pass,req.query.MaTaiKhoan,function(err,rows){
         if(err){
