@@ -103,7 +103,19 @@ router.get('/laydiem/:mssv?/:nam?/:hocky?',function(req,res,next){
     });
 });
 //---------lấy tên môn lý thuyết theo mssv, năm , học kỳ--------------------
-
+router.get('/laymonlt/:mssv?/:nam?/:hocky?',function(req,res,next){
+    MonLyThuyet.getTenMonLyThuyet(
+        req.params.mssv, 
+        req.params.nam,
+        req.params.hocky,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 
 //---------lấy tên môn thực hành theo mssv, năm , học kỳ   --------------------
 router.get('/laymonth/:mssv?/:nam?/:hocky?',function(req,res,next){
