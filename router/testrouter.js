@@ -88,6 +88,7 @@ router.get('/laydiem',function(req,res,next){
         }
     });
 });
+
 //---------lấy điểm theo mssv, năm , học kỳ--------------------
 router.get('/laydiem/:mssv?/:nam?/:hocky?',function(req,res,next){
     Diem.getDiemById(
