@@ -116,6 +116,7 @@ router.get('/laymonlt/:mssv?/:nam?/:hocky?',function(req,res,next){
         }
     });
 });
+
 //---------lấy tên môn thực hành theo mssv, năm , học kỳ--------------------
 router.get('/laymonth/:mssv?/:nam?/:hocky?',function(req,res,next){
     MonThucHanh.getTenMonThucHanh(
