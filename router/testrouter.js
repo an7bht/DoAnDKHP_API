@@ -23,6 +23,8 @@ const KiemTraMonTienQuyet = require('../controller/getKiemTraMonTienQuyet');
 const KiemTraTrungLichHoc = require('../controller/getKiemTraTrungLichHoc');
 const NamHoc = require('../controller/getNamHoc');
 const MatKhau = require('../controller/updateMatKhau');
+const MonLyThuyet = require('../controller/getTenMonLyThuyet');
+const MonThucHanh = require('../controller/getTenMonThucHanh');
 
 router.get('/taikhoansv',function(req,res,next){
     TaiKhoanSV.getAllTaiKhoan(function(err,rows){
@@ -100,7 +102,34 @@ router.get('/laydiem/:mssv?/:nam?/:hocky?',function(req,res,next){
         }
     });
 });
-
+//---------lấy tên môn lý thuyết theo mssv, năm , học kỳ--------------------
+router.get('/laymonlt/:mssv?/:nam?/:hocky?',function(req,res,next){
+    MonLyThuyet.getTenMonLyThuyet(
+        req.params.mssv, 
+        req.params.nam,
+        req.params.hocky,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
+//---------lấy tên môn thực hành theo mssv, năm , học kỳ--------------------
+router.get('/laymonth/:mssv?/:nam?/:hocky?',function(req,res,next){
+    MonThucHanh.getTenMonThucHanh(
+        req.params.mssv, 
+        req.params.nam,
+        req.params.hocky,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 router.get('/laylichhoc/:hocky?/:nam?/:mssv?',function(req,res,next){
     LichHoc.getLichHoc( req.params.hocky,req.params.nam,req.params.mssv,function(err,rows){
         if(err){
