@@ -53,7 +53,19 @@ router.get('/sinhvien',function(req,res,next){
             res.json(err);
         }
         else{
-            res.json(rows);
+            let arr = rows.map(e=>{
+                return {
+                    MSSV: e.MSSV,
+                    DiaChi: e.DiaChi,
+                    GioiTinh: e.GioiTinh,
+                    HoTen: e.HoTen,
+                    NgaySinh: e.NgaySinh.getTime(),
+                    SoDT: e.SoDT,
+                    KhoaHoc: e.KhoaHoc, 
+                    imageSV: e.imageSV,
+                }
+            });
+            res.json(arr);
         }
     });
 });
@@ -64,7 +76,18 @@ router.get('/sinhvien/:id?',function(req,res,next){
             res.json(err);
         }
         else{
-            res.json(rows);
+            console.log(rows);
+            let row = rows[0];
+            let a = 
+                    {MSSV: row.MSSV,
+                    DiaChi: row.DiaChi,
+                    GioiTinh: row.GioiTinh,
+                    HoTen: row.HoTen,
+                    NgaySinhTime: row.NgaySinh.getTime(),
+                    SoDT: row.SoDT,
+                    KhoaHoc: row.KhoaHoc, 
+                    imageSV: row.imageSV,}
+            res.json(a);
         }
     });
 });
